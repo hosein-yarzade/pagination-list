@@ -16,17 +16,13 @@ function MainApp() {
     const fetchList = () => {
         setLoader(true)
         operations.getPost().then(res => {
-            console.log('>>>>>', res)
             setListData(res.slice(0,24))
             setLoader(false)
         }).catch((e) => {
-            // console.log(e)
         })
-        // setListData(operations)
 
     }
     useEffect(() => {
-        // console.log('>>>>>', data)
         fetchList()
     }, [])
     const changList = (Title: any, Text: any) => {
