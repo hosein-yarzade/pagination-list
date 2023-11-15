@@ -3,36 +3,34 @@ import './listView.css'
 import {Pagination, PaginationItem, PaginationLink} from "reactstrap";
 import ListItem from "../../component/listItem/listItem";
 
-function ListView(props) {
-    // const listData = props.ListData
-    const [listData ] = useState(props.ListData)
+function ListView(props:any) {
+
     const [currentPage, setCurrentPage] = useState(0)
     const pageSize = 5;
-    const pagesCount = Math.ceil(listData.length / pageSize);
+    const pagesCount = Math.ceil(props.ListData.length / pageSize);
 
-    // useEffect(() => {
-    //     console.log('>>>>>', listData)
-    // }, [listData])
 
-    const handleClick=(e, index)=> {
+    const handleClick=(e:any, index:number)=> {
 
         e.preventDefault();
         setCurrentPage(index)
     }
     return (
         <Fragment>
-            <div >
-                {listData
+            <div className='itemViewContainer'>
+                <div className='itemViewContainerInner'>
+                {props.ListData
                     .slice(
                         currentPage * pageSize,
                         (currentPage + 1) * pageSize
                     )
-                    .map((data, i) =>
-                        <div className="data-slice" key={i}>
+                    .map((data:object, i:number) =>
+                        <div className="data-slice " key={i} >
                             <ListItem data={data}/>
                         </div>
                     )}
-                <Pagination aria-label="container">
+                </div>
+                <Pagination aria-label="container" className="paginationView">
 
                     <PaginationItem disabled={currentPage <= 0}>
 

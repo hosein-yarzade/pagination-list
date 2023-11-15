@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label} from 'reactstrap';
-function ModalView(args) {
+import React, {useState} from 'react';
+import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+
+function ModalView(props:any) {
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
     const [formData, setFormData] = useState({title: "",text: ""});
 
-    const handleChange = (event) => {
+    const handleChange = (event:any) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
-    const handleSubmit = (event) => {
+    const setToList=(title : string , text :string)=>{
+        props.ChangList(title,text)
+    }
+    const handleSubmit = (event :any ) => {
+        if(formData.title =="" || formData.text==""){
+            return
+        }else {
         event.preventDefault();
-        alert(`Name: ${formData.title}, Message: ${formData.text}`
-        );
+            setFormData({title: "",text: ""})
         toggle()
+        setToList(formData.title , formData.text)
+        }
     };
     return (
         <div>
             <Button color="primary" onClick={toggle}>
                 add post
             </Button>
-            <Modal isOpen={modal} toggle={toggle} {...args}>
+            <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                 <ModalBody>
                     <Form>
@@ -52,7 +60,7 @@ function ModalView(args) {
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={handleSubmit} >
-                        Do Something
+                       add +
                     </Button>{' '}
                     <Button color="secondary" onClick={toggle}>
                         Cancel

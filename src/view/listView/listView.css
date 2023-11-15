@@ -1,0 +1,23 @@
+.itemViewContainer{
+    width: 100%;
+}
+.itemViewContainerInner{
+    width: 100%;
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.listContainer{
+    padding: 5px;
+
+}
+.paginationView{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

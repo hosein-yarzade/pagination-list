@@ -1,6 +1,6 @@
 import './listItem.css'
 
-function MainApp(props) {
+function ListItem(props:any) {
     const {title , body }=props.data
     return (
 
@@ -9,7 +9,7 @@ function MainApp(props) {
                 <div className="listItemTitle">
                     {title}
                 </div>
-                <div className="listItemContent">
+                <div className="listItemBody">
                     {body}
                 </div>
 
@@ -18,4 +18,4 @@ function MainApp(props) {
     );
 }
 
-export default MainApp;
+export default ListItem;
